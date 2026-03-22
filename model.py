@@ -1,4 +1,4 @@
-import pickle
+ import pickle
 import re
 
 # Load files
@@ -12,6 +12,7 @@ def clean_text(text):
     return text
 
 # Prediction function
+
 def predict_news(text, threshold=0.8):
     vec = vectorizer.transform([text])
     
@@ -25,3 +26,8 @@ def predict_news(text, threshold=0.8):
         result = "✅ Real News"
 
     return result, fake_prob, real_prob
+    
+    if prob[1] > 0.8:
+        return f"FAKE NEWS 🚨 (Confidence: {prob[1]*100:.2f}%)"
+    else:
+        return f"REAL NEWS ✅ (Confidence: {prob[0]*100:.2f}%)"
